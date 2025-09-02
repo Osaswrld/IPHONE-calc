@@ -49,4 +49,4 @@ No build process required. Simply open `Iphone.html` in your preferred web brows
 ---
 ## Images 📸
 ![siganl, wifi and battery icons](status.png)
-![Ipohne calc](image.png)
+![Ipohne calc](image.png)# IPHONE-calc
