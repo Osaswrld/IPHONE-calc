@@ -1,4 +1,4 @@
-# iPhone Calculator 📱
+# IPhone Calculator 📱
 
 A web-based replica of the iPhone calculator app built with HTML, CSS, and vanilla JavaScript. ✨
 
