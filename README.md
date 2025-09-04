@@ -1,4 +1,4 @@
-# iPhone Calculator 📱
+# IPhone Calculator 📱
 
 A web-based replica of the iPhone calculator app built with HTML, CSS, and vanilla JavaScript. ✨
 
@@ -50,3 +50,9 @@ No build process required. Simply open `Iphone.html` in your preferred web brows
 ## Images 📸
 ![siganl, wifi and battery icons](status.png)
 ![Ipohne calc](image.png)# IPHONE-calc
+
+## Updated Images📸
+<img width="1360" height="767" alt="Screenshot 2025-09-02 162311" src="https://github.com/user-attachments/assets/e6a285a7-637e-4c46-a634-1cbda9c08caf" />
+<img width="1341" height="679" alt="Screenshot 2025-09-02 162338" src="https://github.com/user-attachments/assets/f6466787-0c6e-456d-9370-f172543f9fc1" />
+<img width="1326" height="687" alt="Screenshot 2025-09-02 155845" src="https://github.com/user-attachments/assets/5d8b47bb-bcf3-4201-b2bf-bfa355d8f29d" />
+
