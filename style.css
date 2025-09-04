@@ -6,28 +6,23 @@
 }
 
 body {
- margin: 25px;
- font-family: "Helvetica Neue", sans-serif;
- justify-items: center;
- background: linear-gradient(135deg, #1a1a1a, #333);
- min-width: 100vh;
+  margin: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #1a1a1a, #333);
+  min-height: 100vh;
 }
 
+/* Header - Responsive with Bootstrap */
 header {
-  text-align: center;
   padding: 30px 20px;
   background: linear-gradient(135deg, #1a1a1a, #000);
   color: #ffd700;
-  border-radius: 0 0 0 0;
-  width: 100vw;
-  max-width: 2650px;
-  margin: 0 auto;
-  margin-bottom: 15px;
   box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+  width: 100%;
 }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   font-weight: bold;
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   animation: glow 2s ease-in-out infinite alternate;
@@ -38,38 +33,42 @@ header h1 {
   to {text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6);}
 }
 
+/* Responsive Calculator */
 .calculator {
   background: linear-gradient(135deg, #000, #1a1a1a);
-  width: 563px;
-  height: 1218px;
-  border-radius: 50px 50px 50px 50px;
-  padding: 20px;
+  width: clamp(320px, 100%, 400px); /* Min 320px, max 400px */
+  border-radius: clamp(25px, 5vw, 50px);
+  padding: clamp(15px, 4vw, 20px);
   color: white;
   position: relative;
-  margin: 0 auto;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
-  flex-shrink: 0;
+  margin: 20px auto;
 }
 
 .top-container {
-  padding: 0 20px;
+  padding: 0 20px 20px;
   display: flex;
   justify-content: space-between;
-  height: 250px;
+  align-items: flex-start;
+  min-height: 50px;
 }
 
 .clock {
-  font-size: 18px;
+  font-size: clamp(16px, 3vw, 18px);
   color: #fff;
-  margin-top: 10px;
 }
 
 .status {
-  margin-top: 10px;
+  margin-top: 2px;
+}
+
+.status div {
+  width: clamp(16px, 4vw, 20px) !important;
+  height: clamp(16px, 4vw, 20px) !important;
 }
 
 .display-container {
-  height: 200px;
+  min-height: clamp(100px, 20vw, 200px);
   margin-bottom: 20px;
   margin-right: 20px;
   display: flex;
@@ -80,10 +79,10 @@ header h1 {
 }
 
 .calculation-display {
-  font-size: 35px;
+  font-size: clamp(20px, 6vw, 35px);
   font-weight: 300;
   color: #888;
-  height: 50px;
+  min-height: clamp(25px, 8vw, 50px);
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -95,9 +94,9 @@ header h1 {
 }
 
 .display {
-  font-size: 130px;
+  font-size: clamp(50px, 15vw, 130px);
   font-weight: 300;
-  height: 150px;
+  min-height: clamp(60px, 18vw, 150px);
   transition: all 0.3s ease;
   display: flex;
   align-items: center;
@@ -108,26 +107,32 @@ header h1 {
 }
 
 .display.shrink {
-  font-size: 80px; /* Reduced font size at 6 characters */
+  font-size: clamp(40px, 12vw, 80px);
 }
 
 .display.shrink-more {
-  font-size: 60px; /* Further reduced font size for 10+ characters */
+  font-size: clamp(35px, 10vw, 60px);
 }
 
+/* Remove old grid styles - Bootstrap handles this now */
 .buttons-container {
- display: grid;
- grid-template-rows: repeat(5, 1fr);
- grid-template-columns: repeat(4, 1fr);
- grid-gap: 20px;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.buttons-container .row {
+  margin: 0;
 }
 
 .button {
-  height: 110px;
-  width: 110px;
-  font-size: 55px;
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  min-height: clamp(55px, 12vw, 75px); /* Slightly larger min-size */
+  min-width: clamp(55px, 12vw, 75px); /* Ensure width matches */
+  font-size: clamp(1.2rem, 4vw, 2rem);
   border-radius: 50%;
-  background: #333;
+  background: linear-gradient(135deg, #444, #555);
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,6 +141,8 @@ header h1 {
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  color: white;
+  touch-action: manipulation; /* Prevents zoom on mobile */
 }
 
 .button::before {
@@ -187,31 +194,29 @@ header h1 {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.button:not(.function):not(.operator) {
-  background: linear-gradient(135deg, #444, #555);
-}
-
 .button:not(.function):not(.operator):hover {
   background: linear-gradient(135deg, #555, #666);
   color: #ffd700;
   text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
+/* Zero button spanning 2 columns */
 .button.number-0 {
-  width: 250px;
-  border-radius: 55px;
+  border-radius: clamp(25px, 8vw, 50px);
   justify-content: flex-start;
-  padding-left: 43px;
-  grid-column: 1/ span 2;
+  padding-left: clamp(20px, 6vw, 30px);
+  aspect-ratio: unset;
 }
 
 .button.number-0:hover {
   background: linear-gradient(135deg, #555, #666);
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 }
 
 .bottom {
-  width: 200px;
-  height: 5.5px;
+  width: clamp(120px, 40%, 200px);
+  height: clamp(4px, 1vw, 5.5px);
   background: linear-gradient(90deg, #333, #666, #333);
   border-radius: 4px;
   position: absolute;
@@ -223,41 +228,42 @@ header h1 {
 
 @keyframes shimmer {
   0%, 100% {opacity: 0.5;}
-  50% { opacity: 1;}
+  50% {opacity: 1;}
 }
 
+/* Footer - Bootstrap Compatible */
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 30px 20px;
-  background: linear-gradient(135deg, #000, #1a1a1a);
-  color: #ffd700;
-  width: 100vw;
-  max-width: 2650px;
-  margin: 0 auto;
-  margin-top: 15px;
+  background: linear-gradient(135deg, #000, #1a1a1a) !important;
+  color: #ffd700 !important;
   box-shadow: 0 -4px 20px rgba(255, 215, 0, 0.2);
-  font-size: x-large;
+  margin-top: 20px;
+  width: 100%;
+}
+
+footer .container-fluid {
+  padding: 20px;
 }
 
 footer p {
   margin: 0;
-  font-weight: bolder;
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.2rem);
 }
 
 .socials {
   display: flex;
-  justify-content: flex-end;
-  gap: 20px;
+  gap: clamp(10px, 3vw, 20px);
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: clamp(40px, 8vw, 50px);
+  height: clamp(40px, 8vw, 50px);
   background: linear-gradient(135deg, #333, #444);
   border-radius: 50%;
   color: #ffd700;
@@ -284,63 +290,49 @@ footer p {
 }
 
 .social-link:hover {
-  background: linear-gradient(135deg, #ffd700, #ffb347);
-  color: #000;
   transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
 }
 
-/* LinkedIn hover */
+/* Platform-specific hover colors */
 .social-link.linkedin:hover {
   background: linear-gradient(135deg, #0077b5, #005885);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(0, 119, 181, 0.4);
 }
 
-/* GitHub hover */
 .social-link.github:hover {
   background: linear-gradient(135deg, #333, #24292e);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(36, 41, 46, 0.4);
 }
 
-/* X/Twitter hover */
 .social-link.twitter:hover {
   background: linear-gradient(135deg, #000, #1a1a1a);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
-/* Instagram hover */
 .social-link.instagram:hover {
   background: linear-gradient(135deg, #e4405f, #833ab4, #fcaf45);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(228, 64, 95, 0.4);
 }
 
-/* WhatsApp hover */
 .social-link.whatsapp:hover {
   background: linear-gradient(135deg, #25d366, #128c7e);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
 }
 
-/* Facebook hover */
 .social-link.facebook:hover {
   background: linear-gradient(135deg, #1877f2, #0d47a1);
   color: white;
-  transform: translateY(-3px) scale(1.1);
   box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
 }
 
 .social-link svg {
-  width: 24px;
-  height: 24px;
+  width: clamp(18px, 4vw, 24px);
+  height: clamp(18px, 4vw, 24px);
   transition: transform 0.3s ease;
 }
 
@@ -348,55 +340,63 @@ footer p {
   transform: scale(1.2);
 }
 
-/* Container for centering */
-.container {
-  max-width: none;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
+/* Override Bootstrap container to not conflict with design */
+.container.d-flex {
+  max-width: none !important;
+  padding: 0 15px;
 }
 
-/* Responsive design */
-@media (max-width: 600px) {
+/* Responsive breakpoints using Bootstrap's system */
+@media (max-width: 575.98px) {
+  body {
+    margin: 10px;
+  }
+  
   .calculator {
-    width: 95vw;
-    max-width: 400px;
-    height: auto;
-    aspect-ratio: 0.46;
+    max-width: 350px;
+    margin: 15px auto;
   }
   
-  .button {
-    height: 80px;
-    width: 80px;
-    font-size: 40px;
+  header {
+    padding: 20px 15px;
   }
   
-  .display {
-    font-size: 80px;
-  }
-  
-  .display.shrink {
-    font-size: 50px; /* Smaller font size for mobile at 6 characters */
-  }
-  
-  .display.shrink-more {
-    font-size: 40px; /* Further reduced for mobile at 10+ characters */
-  }
-  
-  header h1 {
-    font-size: 2rem;
-  }
-  
-  footer {
-    flex-direction: column;
-    align-items: flex-start;
+  footer .d-flex {
+    flex-direction: column !important;
+    text-align: center;
     gap: 15px;
   }
   
   .socials {
-    justify-content: center;
-    width: 100%;
+    justify-content: center !important;
+    margin: 0 !important;
   }
 }
+
+/* Adjust for larger screens */
+@media (min-width: 1200px) {
+  .calculator {
+    width: clamp(400px, 50%, 500px); /* Scale up slightly for desktops */
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    margin: 25px;
+  }
+  
+  .calculator {
+    max-width: 400px;
+  }
+  
+  footer .d-flex {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+  }
+  
+  .socials {
+    justify-content: flex-end !important;
+    margin: 0 !important;
+  }
+}
+
